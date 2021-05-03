@@ -1252,7 +1252,7 @@ let ckb ((settings_flags, heuristic_flags) as flags) input =
       if !(S.do_proof) <> None then [e | e <- es;not (Lit.is_trivial e)] else es
     in
     let es' = L.map Lit.normalize est in
-    let es0 = L.sort Pervasives.compare es' in
+    let es0 = L.sort Stdlib.compare es' in
     let gs0 = L.map Lit.normalize gs in
     Select.init es0 gs0;
     init_settings flags es0 gs0;

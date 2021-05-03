@@ -57,13 +57,13 @@ let of_termss ctx rs =
 let symmetric ns = H.fold (fun n _ res -> add (Lit.flip n) res) ns (copy ns)
 
 let print_list ppf l =
-  let rs = List.sort Pervasives.compare l in
+  let rs = List.sort Stdlib.compare l in
   let print_list = Formatx.print_list (fun f n -> Lit.print f n) "\n " in
   Format.fprintf ppf "@[<v 0> %a@]" print_list rs
 ;;
 
 let to_list ns =
-  let cmp n n' = Pervasives.compare (Lit.terms n) (Lit.terms n') in
+  let cmp n n' = Stdlib.compare (Lit.terms n) (Lit.terms n') in
   L.sort cmp (H.fold (fun n _ l -> n :: l) ns [])
 ;;
   

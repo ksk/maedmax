@@ -212,7 +212,7 @@ let ancestors eqs =
         failwith "Trace.of_equation: equation unknown")
   in
   let aged_ancestors = ancestors [] eqs in
-  let age_compare (_, a) (_,b) = Pervasives.compare a b in
+  let age_compare (_, a) (_,b) = Stdlib.compare a b in
   let res = List.map fst (List.sort age_compare aged_ancestors) in
   if S.do_proof_debug () then (
     Format.printf "sorted ancestors:\n";

@@ -46,13 +46,13 @@ val is_duplicating : Rules.t -> bool
 
 val take_time : float ref -> ('a -> 'b) -> 'a -> 'b
 
-val analyze : Literal.t list -> Literal.t list -> Yojson.Basic.json
+val analyze : Literal.t list -> Literal.t list -> Yojson.Basic.t
 
 val problem_shape : Rules.t-> Settings.shape
 
 val theory_equations : Literal.t list -> Literal.t list
 
-val json : unit -> Yojson.Basic.json
+val json : unit -> Yojson.Basic.t
 
 val print : unit -> unit
 

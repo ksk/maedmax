@@ -6,7 +6,7 @@ module Lit = Literal
 
 module OrdInt = struct
   type t = int
-  let compare = Pervasives.compare
+  let compare = Stdlib.compare
 end
 
 module IntMap = Map.Make(OrdInt)
@@ -55,7 +55,7 @@ let store_max steps =
 ;;
 
 let sort_history aged_ancestors =
-  let age_compare (a, _) (b, _) = Pervasives.compare a.id b.id in
+  let age_compare (a, _) (b, _) = Stdlib.compare a.id b.id in
   let res = List.sort age_compare aged_ancestors in
   if Settings.do_proof_debug () then (
     Format.printf "sorted ancestors:\n";

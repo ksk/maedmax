@@ -39,14 +39,16 @@ let is_true x = B.is_true x.expr
 
 let is_false x = B.is_false x.expr
 
+(*
 let to_int i =
   try Big_int.int_of_big_int i
   with _ -> 
     Format.printf "%s\n%!" (Big_int.string_of_big_int i);
     failwith "Z3x conversion error"
 ;;
+*)
 
-let is_zero x = try to_int (I.get_big_int x.expr) == 0 with _ -> false
+let is_zero x = try Z.to_int (I.get_big_int x.expr) == 0 with _ -> false
 
 let mk_context _ =
   let c = mk_context [("timeout", "3000")] in
@@ -156,14 +158,14 @@ module Int = struct
     try I.get_big_int e
     with _ -> (* optimization cost is real *)
       if Arith.is_real e &&
-        to_int (I.get_big_int (Real.get_denominator e)) == 1 then
+        Z.to_int (I.get_big_int (Real.get_denominator e)) == 1 then
         I.get_big_int (Real.get_numerator e)
       else failwith ("Z3x.get_big_int: conversion error " ^ (Expr.to_string e))
   ;;
 
   let eval m x =
     match Model.eval m x.expr true with
-    | Some e -> to_int (get_big_int x e)
+    | Some e -> Z.to_int (get_big_int x e)
     | _ -> failwith "Z3x.Int.eval failed"
   ;;
 end

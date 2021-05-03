@@ -6,7 +6,7 @@ open Signature
 
 module Var = struct
   type t = Signature.var
-  let compare = Pervasives.compare
+  let compare = Stdlib.compare
 end
 
 module Sub = Map.Make(Var)
@@ -23,7 +23,7 @@ type binding = Signature.var * t
 type subst = t Sub.t
 
 (*** FUNCTIONS ***************************************************************)
-let compare = Pervasives.compare
+let compare = Stdlib.compare
 
 let rec print ppf = function
   | V x -> fprintf ppf "%s" (get_var_name x)

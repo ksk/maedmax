@@ -1,4 +1,5 @@
-module Logic = Yicesx
+(* module Logic = Yicesx *)
+module Logic = Z3x
 
 class type t = object
   method bot: Signature.sym option

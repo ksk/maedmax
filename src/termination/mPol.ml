@@ -213,7 +213,8 @@ let decode_prec k m fs =
  let prec = [f, Int.eval m x | f,x <- fv; has_val x] in
  let fs' = [ f | f <- fs; List.mem_assoc f prec ] in
  let pg = Listx.group_by (fun x -> List.assoc x prec) fs' in
- let pg = List.sort ( fun (a,_) (b,_) -> Pervasives.compare b a) pg in
+ let pg = List.sort ( fun (a,_) (b,_) -> Stdlib
+.compare b a) pg in
  pp pg
 ;;
 

@@ -84,11 +84,11 @@ let sum xs = List.fold_left (+) 0 xs
 
 let max = function
   | [] -> invalid_arg "Listx.max"
-  | x :: xs -> List.fold_left Pervasives.max x xs
+  | x :: xs -> List.fold_left Stdlib.max x xs
 
 let min = function
   | [] -> invalid_arg "Listx.min"
-  | x :: xs -> List.fold_left Pervasives.min x xs
+  | x :: xs -> List.fold_left Stdlib.min x xs
 
 let rec interval a b =
   if a <= b then a :: interval (a + 1) b else []

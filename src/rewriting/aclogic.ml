@@ -116,13 +116,13 @@ let rec lex = function
   | x :: xs, y :: ys -> let c = ucmp x y in if c=0 then lex (xs,ys) else c
   and ucmp t t' =
   match t, t' with
-      T.V x, T.V y -> Pervasives.compare x y
+      T.V x, T.V y -> Stdlib.compare x y
     | T.F _, T.V _ -> -1
     | T.V _, T.F _ -> 1
     | T.F(_, []), T.F(_, t::ts) -> -1
     | T.F(_, t :: ts), T.F(_, []) -> 1
     | T.F(f, fs), T.F(g, gs) when f = g -> lex (fs, gs)
-    | T.F(f, _), T.F(g, _) -> Pervasives.compare f g
+    | T.F(f, _), T.F(g, _) -> Stdlib.compare f g
 ;;
 
 let flatten t = T.flatten (Sig.ac_symbols ()) t

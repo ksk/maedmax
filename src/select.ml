@@ -248,7 +248,7 @@ let split k ns =
     [] -> L.rev acc,[]
     | n :: ns ->
       let s = Lit.size n in
-      if k > 0 || s = size then (split (n::acc) (Pervasives.max 0 (k - 1)) s ns)
+      if k > 0 || s = size then (split (n::acc) (Stdlib.max 0 (k - 1)) s ns)
       else L.rev acc,ns
   in
   let about_k, _ = split [] k 0 ns in
@@ -587,7 +587,7 @@ let get_classification json_file =
     try (attr (assoc "attr"), thresh (assoc "thresh"), assoc "leq", assoc "gt")
     with Not_found -> failwith "Select.get_classification: unexpected json"
   in
-  let rec decision_tree (json : Yojson.Basic.json) = match json with
+  let rec decision_tree (json : Yojson.Basic.t) = match json with
   | `Float c -> (fun _ _ _ -> c)
   | `Assoc l ->
     let attr_of, th, leq, gt = assoc l in

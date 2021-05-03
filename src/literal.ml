@@ -118,7 +118,7 @@ module LightTrace = struct
       List.iter (fun e -> Format.printf "  %a\n\n" print e) eqs);
     let ids ps = List.fold_left (^) "" [string_of_int p.id ^ " " | p <- ps] in
     let acc_eqs acc = [l | l, _ <- acc] in
-    let lit_cmp (l,_) (l',_) = Pervasives.compare l.id l'.id in
+    let lit_cmp (l,_) (l',_) = Stdlib.compare l.id l'.id in
     (* invariant: second argument does not intersect with first *)
     let rec ancestors acc = function
       | [] -> acc
@@ -276,4 +276,4 @@ let signature l = Rule.signature l.terms
 
 let variables l = Rule.variables l.terms
 
-let compare_size l l' = Pervasives.compare (size l) (size l')
+let compare_size l l' = Stdlib.compare (size l) (size l')
